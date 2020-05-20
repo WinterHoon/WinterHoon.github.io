@@ -337,24 +337,30 @@
   
 
   
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
-<script src="https://billts.site/js/gitment.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "http://yoursite.com/2020/05/19/hello-world/",
-  owner: 'WinterHoon',
-  repo: 'winterhoon.github.io',
-  oauth: {
-    client_id: '1f0c5ae6a8b6188d1b68',
-    client_secret: '53e9e484b5fa6b2edbb6d6fa262f04e1c43a38dd',
-  },
+
+
+
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '1f0c5ae6a8b6188d1b68',
+  	clientSecret: '53e9e484b5fa6b2edbb6d6fa262f04e1c43a38dd',
+  	repo: 'WinterHoon.github.io',
+  	owner: 'WinterHoon',
+  	admin: ['Ziven-n'],
+  	id: 'Tue May 19 2020 19:45:35 GMT+0800',
+  	distractionFreeMode: 'true'
 })
-gitment.render('gitment-ctn')
+gitalk.render('gitalk-container') 
+}
 </script>
 
   
-
 
           </div>
         </div>
