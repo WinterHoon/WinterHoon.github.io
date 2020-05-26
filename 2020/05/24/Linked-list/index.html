@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Linked List | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="与数组并列的另一种最基础的线性数据结构 Singly Linked List  有两种常用的链表：单向链表和双向链表 没法在常数时间内获取一个链表中的一个随机元素，但链表的插入操作是常数时间，如果已经找到指定的操作位置后，删除操作也是O(1)   Two Pointer Technique  链表常常是双指针技术中快慢指针的使用场景 判断链表中是否有环这个经典的问题可以用哈希表来存储每个结点的指向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linked List">
+<meta property="og:url" content="http://yoursite.com/2020/05/24/Linked-list/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="与数组并列的另一种最基础的线性数据结构 Singly Linked List  有两种常用的链表：单向链表和双向链表 没法在常数时间内获取一个链表中的一个随机元素，但链表的插入操作是常数时间，如果已经找到指定的操作位置后，删除操作也是O(1)   Two Pointer Technique  链表常常是双指针技术中快慢指针的使用场景 判断链表中是否有环这个经典的问题可以用哈希表来存储每个结点的指向">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-24T07:33:27.226Z">
+<meta property="article:modified_time" content="2020-05-26T12:27:21.682Z">
 <meta property="article:author" content="Winter">
 <meta name="twitter:card" content="summary">
   
@@ -146,197 +150,231 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Linked-list" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Linked List
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 
 <a href="/2020/05/24/Linked-list/" class="archive-article-date">
   	<time datetime="2020-05-24T07:33:27.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/24/Linked-list/">Linked List</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>与数组并列的另一种最基础的线性数据结构</p>
+<h5 id="Singly-Linked-List"><a href="#Singly-Linked-List" class="headerlink" title="Singly Linked List"></a>Singly Linked List</h5><blockquote>
+<ul>
+<li>有两种常用的链表：单向链表和双向链表</li>
+<li>没法在常数时间内获取一个链表中的一个随机元素，但链表的插入操作是常数时间，如果已经找到指定的操作位置后，删除操作也是O(1)</li>
+</ul>
+</blockquote>
+<h5 id="Two-Pointer-Technique"><a href="#Two-Pointer-Technique" class="headerlink" title="Two Pointer Technique"></a>Two Pointer Technique</h5><blockquote>
+<ul>
+<li>链表常常是双指针技术中快慢指针的使用场景</li>
+<li>判断链表中是否有环这个经典的问题可以用哈希表来存储每个结点的指向，遍历结点，判断这个结点是否已经出现在哈希表中了，还可以用快慢双指针技术来解决，一般慢指针每次移动一步，快指针每次移动两步</li>
+<li>链表中双指针的使用，技巧性更强，更容易出错</li>
+</ul>
+</blockquote>
+<h5 id="Classic-Problems"><a href="#Classic-Problems" class="headerlink" title="Classic Problems"></a>Classic Problems</h5><blockquote>
+<ul>
+<li>翻转链表、判断链表是否回文等经典的题目做了一下并不是都能思路清晰</li>
+<li>链表的debug不是那么容易，用具体的例子试验可能更好</li>
+</ul>
+</blockquote>
+<h5 id="Doubly-Linked-List"><a href="#Doubly-Linked-List" class="headerlink" title="Doubly Linked List"></a>Doubly Linked List</h5><blockquote>
+<ul>
+<li>因为双向链表保留有前一个结点的指针，所以删除的操作前不需要O(N)时间复杂度的查找</li>
+<li>双向链表的每一个结点都有两个指针，所以对null情况的判断比单向链表变多了，变复杂了</li>
+</ul>
+</blockquote>
+<p>总结：如果增删结点频繁，链表会是一个比较好的选择；如果总是想通过下标来获取一个元素，数组会更好。链表中的一些题目也还是有点难度，也还需要再做一遍。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/Wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/24/Linked-list/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 
-<a href="/2020/05/23/Array-and-String/" class="archive-article-date">
-  	<time datetime="2020-05-23T00:56:21.766Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
-</a>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/23/Array-and-String/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Array and String</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/23/Array-and-String/">Array and String</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Singly-Linked-List"><span class="toc-number">1.</span> <span class="toc-text">Singly Linked List</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Two-Pointer-Technique"><span class="toc-number">2.</span> <span class="toc-text">Two Pointer Technique</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Classic-Problems"><span class="toc-number">3.</span> <span class="toc-text">Classic Problems</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">4.</span> <span class="toc-text">Doubly Linked List</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+        
+    </div>
+</aside>
 
-<a href="/2020/05/21/Array-101/" class="archive-article-date">
-  	<time datetime="2020-05-21T10:32:17.515Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        </div>
-    	 
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/Array-101/">LeetCode Array 101课程的总结</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/20/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-05-20T13:01:01.673Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/20/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">写博客前的准备工作</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/19/The-first-blog-for-testing/" class="archive-article-date">
-  	<time datetime="2020-05-19T11:51:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/The-first-blog-for-testing/">The first blog for testing</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/19/hello-world/" class="archive-article-date">
-  	<time datetime="2020-05-19T11:45:35.756Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '1f0c5ae6a8b6188d1b68',
+  	clientSecret: '53e9e484b5fa6b2edbb6d6fa262f04e1c43a38dd',
+  	repo: 'WinterHoon.github.io',
+  	owner: 'WinterHoon',
+  	admin: ['WinterHoon'],
+  	id: 'Sun May 24 2020 15:33:27 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+
+  
 
           </div>
         </div>
@@ -369,8 +407,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

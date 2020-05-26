@@ -148,6 +148,120 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linked-list" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/24/Linked-list/">Linked List</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2020/05/24/Linked-list/" class="archive-article-date">
+  	<time datetime="2020-05-24T07:33:27.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>与数组并列的另一种最基础的线性数据结构</p>
+<h5 id="Singly-Linked-List"><a href="#Singly-Linked-List" class="headerlink" title="Singly Linked List"></a>Singly Linked List</h5><blockquote>
+<ul>
+<li>有两种常用的链表：单向链表和双向链表</li>
+<li>没法在常数时间内获取一个链表中的一个随机元素，但链表的插入操作是常数时间，如果已经找到指定的操作位置后，删除操作也是O(1)</li>
+</ul>
+</blockquote>
+<h5 id="Two-Pointer-Technique"><a href="#Two-Pointer-Technique" class="headerlink" title="Two Pointer Technique"></a>Two Pointer Technique</h5><blockquote>
+<ul>
+<li>链表常常是双指针技术中快慢指针的使用场景</li>
+<li>判断链表中是否有环这个经典的问题可以用哈希表来存储每个结点的指向，遍历结点，判断这个结点是否已经出现在哈希表中了，还可以用快慢双指针技术来解决，一般慢指针每次移动一步，快指针每次移动两步</li>
+<li>链表中双指针的使用，技巧性更强，更容易出错</li>
+</ul>
+</blockquote>
+<h5 id="Classic-Problems"><a href="#Classic-Problems" class="headerlink" title="Classic Problems"></a>Classic Problems</h5><blockquote>
+<ul>
+<li>翻转链表、判断链表是否回文等经典的题目做了一下并不是都能思路清晰</li>
+<li>链表的debug不是那么容易，用具体的例子试验可能更好</li>
+</ul>
+</blockquote>
+<h5 id="Doubly-Linked-List"><a href="#Doubly-Linked-List" class="headerlink" title="Doubly Linked List"></a>Doubly Linked List</h5><blockquote>
+<ul>
+<li>因为双向链表保留有前一个结点的指针，所以删除的操作前不需要O(N)时间复杂度的查找</li>
+<li>双向链表的每一个结点都有两个指针，所以对null情况的判断比单向链表变多了，变复杂了</li>
+</ul>
+</blockquote>
+<p>总结：如果增删结点频繁，链表会是一个比较好的选择；如果总是想通过下标来获取一个元素，数组会更好。链表中的一些题目也还是有点难度，也还需要再做一遍。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/24/Linked-list/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '1f0c5ae6a8b6188d1b68',
+  	clientSecret: '53e9e484b5fa6b2edbb6d6fa262f04e1c43a38dd',
+  	repo: 'WinterHoon.github.io',
+  	owner: 'WinterHoon',
+  	admin: ['WinterHoon'],
+  	id: '',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+
+  
+
+  
     <article id="post-Array-and-String" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -196,6 +310,7 @@
 <h5 id="Two-Pointer-technique"><a href="#Two-Pointer-technique" class="headerlink" title="Two-Pointer technique"></a>Two-Pointer technique</h5><blockquote>
 <ul>
 <li><code>In-place</code> 并不就是说空间复杂度为常数级，<code>In-place</code> 表示不用额外辅助的数据结构，但是并不是只有数据结构在使用内存，比如函数的递归也会占用内存</li>
+<li>双指针技术有两种常见的使用场景：1. 两个指针从不同的位置开始，2. 两个指针以不同的速度移动</li>
 <li>练习题里有些在Array 101中做过了，另外有些还是有些难度的</li>
 </ul>
 </blockquote>
@@ -316,7 +431,7 @@ gitalk.render('gitalk-container')
 </blockquote>
 <h5 id="Searching-items-linear-search"><a href="#Searching-items-linear-search" class="headerlink" title="Searching items ( linear search )"></a>Searching items ( linear search )</h5><blockquote>
 <ul>
-<li>查就是不断地读数组中的元素，并跟指定的数进行比较</li>
+<li>查就是不断地读数组中的元素，并跟指定的数进行比较（查操作也就是遍历操作）</li>
 <li>数组的查找操作也可以分为三种，如果已知下标，则查找操作退化为读操作，如果下标未知且数组无序叫线性查找，如果下标未知而数组有序叫二分查找。二分查找一般用在需要多次查找的时候，因为查找之前要先做排序，需要<code>NlogN</code>的时间复杂度</li>
 <li>Check If N and Its Double Exist 用hashSet的方法在<a href="https://leetcode.com/problems/check-if-n-and-its-double-exist/discuss/503441/JavaPython-3-HashSet-w-analysis." target="_blank" rel="noopener">这里</a>。</li>
 </ul>
