@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Hash Table | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="哈希表示用来实现快速插入和快速查找的数据结构 Design a hash table  哈希表的原则就是用一个哈希函数来把键映射到存储槽 设计哈希表时的一个关键因素是选择哈希函数，哈希函数应该尽可能让key到存储槽的映射均匀分布 另一个关键因素是冲突解决，大部分哈希表都做不到键与存储槽之间完美的一一映射，因此要处理在同一个存储槽中的键 编程语言内置的哈希表，插入和查找操作都是O(1)时间复杂度，但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hash Table">
+<meta property="og:url" content="http://yoursite.com/2020/05/26/Hash-table/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="哈希表示用来实现快速插入和快速查找的数据结构 Design a hash table  哈希表的原则就是用一个哈希函数来把键映射到存储槽 设计哈希表时的一个关键因素是选择哈希函数，哈希函数应该尽可能让key到存储槽的映射均匀分布 另一个关键因素是冲突解决，大部分哈希表都做不到键与存储槽之间完美的一一映射，因此要处理在同一个存储槽中的键 编程语言内置的哈希表，插入和查找操作都是O(1)时间复杂度，但">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/.com//hash-table.png">
+<meta property="article:published_time" content="2020-05-26T12:38:06.833Z">
+<meta property="article:modified_time" content="2020-05-27T09:24:03.732Z">
 <meta property="article:author" content="Winter">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/.com//hash-table.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -146,226 +152,233 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Hash-table" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Hash Table
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 
 <a href="/2020/05/26/Hash-table/" class="archive-article-date">
   	<time datetime="2020-05-26T12:38:06.833Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-26</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/26/Hash-table/">Hash Table</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>哈希表示用来实现快速插入和快速查找的数据结构</p>
+<h5 id="Design-a-hash-table"><a href="#Design-a-hash-table" class="headerlink" title="Design a hash table"></a>Design a hash table</h5><blockquote>
+<ul>
+<li>哈希表的原则就是用一个哈希函数来把键映射到存储槽</li>
+<li>设计哈希表时的一个关键因素是选择哈希函数，哈希函数应该尽可能让key到存储槽的映射均匀分布</li>
+<li>另一个关键因素是冲突解决，大部分哈希表都做不到键与存储槽之间完美的一一映射，因此要处理在同一个存储槽中的键</li>
+<li>编程语言内置的哈希表，插入和查找操作都是O(1)时间复杂度，但如果太多键在同一个存储槽中，那么这些键会以高度平衡二叉树来存储，平均情况下，插入和查找操作都还是O(1)复杂度，但最坏情况下两者都会变为O(logN)</li>
+</ul>
+</blockquote>
+<h5 id="Practical-application-hash-set"><a href="#Practical-application-hash-set" class="headerlink" title="Practical application - hash set"></a>Practical application - hash set</h5><blockquote>
+<ul>
+<li>通常，一个hash set一般用来检查一个元素是否出现过了</li>
+</ul>
+</blockquote>
+<h5 id="Practical-application-hash-map"><a href="#Practical-application-hash-map" class="headerlink" title="Practical application - hash map"></a>Practical application - hash map</h5><blockquote>
+<ul>
+<li>Java中遍历hash map时，用keySet()就可以，不过entrySet()似乎更好，能少一次循环</li>
+<li>hash map的一种使用场景是在我们可以使用hash set时需要比Key更多的信息，所以用hash map来建立key和其它信息的映射</li>
+<li>hash map的另一种使用场景是“按键汇总所有信息”，其实不太好区分场景一和场景二的区别，好像就是场景二更侧重汇总所有信息来判断，而场景一是一旦有需要的信息就结束了</li>
+<li>处理场景二类问题的关键在于遇到已经存在的键时如何处理</li>
+</ul>
+</blockquote>
+<h5 id="Practical-application-design-the-key"><a href="#Practical-application-design-the-key" class="headerlink" title="Practical application - design the key"></a>Practical application - design the key</h5><blockquote>
+<ul>
+<li>有时候键的选择并不简单直接，需要自己设计。设计一个键就是自己去建立一个键到一组值的映射，要保证所有同组的值应该被映射到同一个键，所有不同组的值应该被映射到不同的键</li>
+<li>Java中char类型用单引号，字符串用双引号</li>
+</ul>
+</blockquote>
+<h5 id><a href="#" class="headerlink" title></a></h5><p>总结：在经常需要查找和插入时，哈希表是一个很好的选择<br><img src="/.com//hash-table.png" alt="hash table summary"></p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/Wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/26/Hash-table/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 
-<a href="/2020/05/24/Linked-list/" class="archive-article-date">
-  	<time datetime="2020-05-24T07:33:27.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
-</a>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/24/Linked-list/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linked List</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/24/Linked-list/">Linked List</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Design-a-hash-table"><span class="toc-number">1.</span> <span class="toc-text">Design a hash table</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Practical-application-hash-set"><span class="toc-number">2.</span> <span class="toc-text">Practical application - hash set</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Practical-application-hash-map"><span class="toc-number">3.</span> <span class="toc-text">Practical application - hash map</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Practical-application-design-the-key"><span class="toc-number">4.</span> <span class="toc-text">Practical application - design the key</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">5.</span> <span class="toc-text"></span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+        
+    </div>
+</aside>
 
-<a href="/2020/05/23/Array-and-String/" class="archive-article-date">
-  	<time datetime="2020-05-23T00:56:21.766Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
-</a>
-        </div>
-    	 
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/23/Array-and-String/">Array and String</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/21/Array-101/" class="archive-article-date">
-  	<time datetime="2020-05-21T10:32:17.515Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/Array-101/">LeetCode Array 101课程的总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/20/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-05-20T13:01:01.673Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/20/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">写博客前的准备工作</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/19/The-first-blog-for-testing/" class="archive-article-date">
-  	<time datetime="2020-05-19T11:51:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/The-first-blog-for-testing/">The first blog for testing</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 
-<a href="/2020/05/19/hello-world/" class="archive-article-date">
-  	<time datetime="2020-05-19T11:45:35.756Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/hello-world/">Hello World</a>
-    </h1>
-  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
 
-        <div class="article-info info-on-right">
-          
-          
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '1f0c5ae6a8b6188d1b68',
+  	clientSecret: '53e9e484b5fa6b2edbb6d6fa262f04e1c43a38dd',
+  	repo: 'WinterHoon.github.io',
+  	owner: 'WinterHoon',
+  	admin: ['WinterHoon'],
+  	id: 'Tue May 26 2020 20:38:06 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
 
-    
-
+  
 
           </div>
         </div>
@@ -398,8 +411,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
