@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>写博客前的准备工作 | Hexo</title>
+  <title>Queue &amp; Stack | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.利用hexo和github搭建自己的个人博客&amp;emsp;&amp;emsp;这方面的内容全网都有很多，随便找一个教程跟着操作就好了。我是跟着b站的up主CodeSheep（程序羊）的这个https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1Yb411a7ty视频操作的，保姆级教程，一步步演示给你看。 2.增加博客访问数和评论功能&amp;emsp;&amp;emsp;这部分工作并非必要，不过对我来说，有">
+  <meta name="description" content="我们可以在数组中访问任意一个元素，但有时候我们希望限制处理顺序，这样我们可以忽略其它细节。在线性结构的处理顺序中，有两种常见的处理顺序，先进先出和后进先出，而它们对应的数据结构是队列和栈。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写博客前的准备工作">
-<meta property="og:url" content="http://yoursite.com/2020/05/20/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/index.html">
+<meta property="og:title" content="Queue &amp; Stack">
+<meta property="og:url" content="http://yoursite.com/2020/05/27/Queue-and-stack/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.利用hexo和github搭建自己的个人博客&amp;emsp;&amp;emsp;这方面的内容全网都有很多，随便找一个教程跟着操作就好了。我是跟着b站的up主CodeSheep（程序羊）的这个https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1Yb411a7ty视频操作的，保姆级教程，一步步演示给你看。 2.增加博客访问数和评论功能&amp;emsp;&amp;emsp;这部分工作并非必要，不过对我来说，有">
+<meta property="og:description" content="我们可以在数组中访问任意一个元素，但有时候我们希望限制处理顺序，这样我们可以忽略其它细节。在线性结构的处理顺序中，有两种常见的处理顺序，先进先出和后进先出，而它们对应的数据结构是队列和栈。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-20T13:01:01.673Z">
-<meta property="article:modified_time" content="2020-06-07T04:01:38.746Z">
+<meta property="article:published_time" content="2020-05-27T12:56:43.857Z">
+<meta property="article:modified_time" content="2020-06-07T04:02:26.794Z">
 <meta property="article:author" content="Winter">
 <meta name="twitter:card" content="summary">
   
@@ -150,14 +150,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-写博客前的准备工作" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Queue-and-stack" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      写博客前的准备工作
+      Queue &amp; Stack
     </h1>
   
 
@@ -169,24 +169,40 @@
         </span>
 
 
-<a href="/2020/05/20/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-05-20T13:01:01.673Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
+<a href="/2020/05/27/Queue-and-stack/" class="archive-article-date">
+  	<time datetime="2020-05-27T12:56:43.857Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-利用hexo和github搭建自己的个人博客"><a href="#1-利用hexo和github搭建自己的个人博客" class="headerlink" title="1.利用hexo和github搭建自己的个人博客"></a>1.利用hexo和github搭建自己的个人博客</h3><p>&emsp;&emsp;这方面的内容全网都有很多，随便找一个教程跟着操作就好了。我是跟着b站的up主CodeSheep（程序羊）的这个<a href="https://www.bilibili.com/video/BV1Yb411a7ty" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1Yb411a7ty</a>视频操作的，保姆级教程，一步步演示给你看。</p>
-<h3 id="2-增加博客访问数和评论功能"><a href="#2-增加博客访问数和评论功能" class="headerlink" title="2.增加博客访问数和评论功能"></a>2.增加博客访问数和评论功能</h3><p>&emsp;&emsp;这部分工作并非必要，不过对我来说，有了访问统计，自己会因为他人的浏览而欣喜，而评论至少能提供一个跟别人互动的机会。</p>
+        <p>我们可以在数组中访问任意一个元素，但有时候我们希望限制处理顺序，这样我们可以忽略其它细节。在线性结构的处理顺序中，有两种常见的处理顺序，先进先出和后进先出，而它们对应的数据结构是队列和栈。</p>
 <a id="more"></a>
-
-<p>&emsp;&emsp;博客访问统计的功能是用<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不蒜子</a>实现的，可以参考<a href="https://albertwulf.github.io/AlbertWulf.github.io/2019/03/29/hexoyilia%E6%B7%BB%E5%8A%A0%E4%B8%8D%E7%AE%97%E5%AD%90%E7%BB%9F%E8%AE%A1/" target="_blank" rel="noopener">这篇文章</a>。需要注意本地测试时底部显示的访问数是不准确的，要部署到远端后才会正常显示；</p>
-<p>&emsp;&emsp;评论功能需要用到第三方评论插件，网上能搜到的hexo评论插件有很多，但好多都已经停止服务了或者速度实在太慢。挑挑拣拣也就<code>畅言</code>和<code>gitalk</code>可以选。<code>畅言</code>要备案而且有广告，所以就选择了<code>gitalk</code>。</p>
-<p>&emsp;&emsp;<code>gitalk</code>的配置可以参考<a href="https://ziven.cc/2018/07/03/Hexo%E4%B8%BB%E9%A2%98yilia%E5%A2%9E%E5%8A%A0gitalk%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/" target="_blank" rel="noopener">这篇文章</a>。注意要把主题配置文件中的<code>githubID</code>和<code>adminUser</code>改为自己的github名字。</p>
-<h3 id="3-学习markdown语法"><a href="#3-学习markdown语法" class="headerlink" title="3.学习markdown语法"></a>3.学习markdown语法</h3><p>&emsp;&emsp;markdown是一种轻便的标记语言，用来写博客很方便，学习起来也很简单。</p>
-<p>&emsp;&emsp;一般的代码书写软件都能书写markdown文件，而且基本上都会有可选择的插件来帮助你更好地书写。然后网上随便找个markdown语法教程学习一下，就学最简单的语法，其它的可以等需要用到再去了解。</p>
-<p>&emsp;&emsp;做好了以上三样，之后就可以愉快地写博客来总结和分享学到的知识了。</p>
+<h5 id="Queue-First-in-first-out-Data-Structure"><a href="#Queue-First-in-first-out-Data-Structure" class="headerlink" title="Queue:First-in-first-out Data Structure"></a>Queue:First-in-first-out Data Structure</h5><blockquote>
+<ul>
+<li><code>Queue</code> 先进先出</li>
+<li><code>Java</code>中初始化一个队列一般用：<code>Queue&lt;T&gt; queue = new LinkedList&lt;T&gt; ()</code></li>
+</ul>
+</blockquote>
+<h5 id="Queue-and-BFS"><a href="#Queue-and-BFS" class="headerlink" title="Queue and BFS"></a>Queue and BFS</h5><blockquote>
+<ul>
+<li><code>BFS（Breadth-first Search)</code> 两种常用场景是遍历和寻找最短路径。广度优先搜索对结点的处理顺序就是先进先处理，所以常用队列这种数据结构来配合实现；</li>
+</ul>
+</blockquote>
+<h5 id="Stack-Last-in-first-out-Data-Structure"><a href="#Stack-Last-in-first-out-Data-Structure" class="headerlink" title="Stack:Last-in-first-out Data Structure"></a>Stack:Last-in-first-out Data Structure</h5><blockquote>
+<ul>
+<li><code>Stack</code> 后进先出</li>
+<li><code>Java</code>中初始化一个栈一般用：<code>Deque&lt;T&gt; stack = new ArrayDeque&lt;T&gt; ()</code>,因为<code>Java</code>中的<code>Stack</code>是一个古老的类，跟现有的<code>Collections</code>类不相通</li>
+</ul>
+</blockquote>
+<h5 id="Stack-and-BFS"><a href="#Stack-and-BFS" class="headerlink" title="Stack and BFS"></a>Stack and BFS</h5><blockquote>
+<ul>
+<li><code>DFS (Depth-first Search)</code> 深度优先搜索的实现一般需要栈这种数据结构来配合</li>
+<li>递归的时候是隐式地使用了栈：<code>call stack</code>，能用递归实现的都可以用一个显式栈加迭代实现</li>
+</ul>
+</blockquote>
+<p>总结：<br>队列和栈本身并不复杂，但一般都会结合树、图等复杂的数据结构，所以很多题目还不能够清晰地实现解决。</p>
 
       
 
@@ -271,7 +287,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/20/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/27/Queue-and-stack/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -285,18 +301,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/21/Array-101/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/05/27/Binary-tree/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          LeetCode Array 101课程的总结
+          Binary Tree
         
       </div>
     </a>
   
   
-    <a href="/2020/05/19/The-first-blog-for-testing/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">The first blog for testing</div>
+    <a href="/2020/05/26/Hash-table/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hash Table</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -323,7 +339,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-利用hexo和github搭建自己的个人博客"><span class="toc-number">1.</span> <span class="toc-text">1.利用hexo和github搭建自己的个人博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-增加博客访问数和评论功能"><span class="toc-number">2.</span> <span class="toc-text">2.增加博客访问数和评论功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-学习markdown语法"><span class="toc-number">3.</span> <span class="toc-text">3.学习markdown语法</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Queue-First-in-first-out-Data-Structure"><span class="toc-number">1.</span> <span class="toc-text">Queue:First-in-first-out Data Structure</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Queue-and-BFS"><span class="toc-number">2.</span> <span class="toc-text">Queue and BFS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Stack-Last-in-first-out-Data-Structure"><span class="toc-number">3.</span> <span class="toc-text">Stack:Last-in-first-out Data Structure</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Stack-and-BFS"><span class="toc-number">4.</span> <span class="toc-text">Stack and BFS</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -359,7 +375,7 @@ if(true){
   	repo: 'WinterHoon.github.io',
   	owner: 'WinterHoon',
   	admin: ['WinterHoon'],
-  	id: 'Wed May 20 2020 21:01:01 GMT+0800',
+  	id: 'Wed May 27 2020 20:56:43 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
