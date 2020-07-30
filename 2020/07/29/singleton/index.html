@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>JavaScript中的单例模式 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="单例模式就是指一个类只有一个实例。一般适用在只需要或者必须只有一个实例的情况。为了实现这种情况，我们要隐藏掉类本身的构造函数，以免不小心用常规方式new出来一个新的实例。同时要对这个类的实例做判断，当需要用到实例时，要先判断这个类的实例存不存在，不存在才创建，存在了就直接返回。在java中，单例模式的实现简单明了： 12345678910111213141516171819202122232425">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中的单例模式">
+<meta property="og:url" content="http://yoursite.com/2020/07/29/singleton/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="单例模式就是指一个类只有一个实例。一般适用在只需要或者必须只有一个实例的情况。为了实现这种情况，我们要隐藏掉类本身的构造函数，以免不小心用常规方式new出来一个新的实例。同时要对这个类的实例做判断，当需要用到实例时，要先判断这个类的实例存不存在，不存在才创建，存在了就直接返回。在java中，单例模式的实现简单明了： 12345678910111213141516171819202122232425">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-29T08:25:55.230Z">
+<meta property="article:modified_time" content="2020-07-30T03:11:44.876Z">
 <meta property="article:author" content="Winter">
 <meta name="twitter:card" content="summary">
   
@@ -146,313 +150,212 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-singleton" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      JavaScript中的单例模式
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 
 <a href="/2020/07/29/singleton/" class="archive-article-date">
   	<time datetime="2020-07-29T08:25:55.230Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-29</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/29/singleton/">JavaScript中的单例模式</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>单例模式就是指一个类只有一个实例。一般适用在只需要或者必须只有一个实例的情况。<br>为了实现这种情况，我们要隐藏掉类本身的构造函数，以免不小心用常规方式new出来一个新的实例。同时要对这个类的实例做判断，当需要用到实例时，要先判断这个类的实例存不存在，不存在才创建，存在了就直接返回。在java中，单例模式的实现简单明了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单例类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="comment">//用一个类属性来储存这个类的唯一实例，同时要对外隐藏，不能通过点方法直接获取</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> instance;</span><br><span class="line">    <span class="comment">//隐藏构造函数，在类外无法直接通过 new 的方式创建类的实例</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="comment">//简单的实例方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"login..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//类方法：获取唯一实例的唯一方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//对唯一实例的存在做判断</span></span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//单例模式测试类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Singleton obj1 = Singleton.getInstance();</span><br><span class="line">        obj1.login(); <span class="comment">// login...</span></span><br><span class="line">        Singleton obj2 = Singleton.getInstance();</span><br><span class="line">        obj2.login(); <span class="comment">// login...</span></span><br><span class="line">        System.out.println(obj1 == obj2); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//会报错，因为Singleton()构造函数对外是不可见的</span></span><br><span class="line">        Singleton obj3 = <span class="keyword">new</span> Singleton(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然上面的实现方式还有线程安全等问题没有解决，但思路上可以窥见通过private修饰符，Java可以很轻松的实现单例模式。</p>
+<p>而JavaScript没有private修饰符，我们是通过闭包的形式来实现了一个私有变量。具体代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单例类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span>() </span>&#123;</span><br><span class="line">    <span class="comment">//即使不写构造函数系统也会自动添加</span></span><br><span class="line">    <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//实例方法</span></span><br><span class="line">    login() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"login..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取唯一实例的方法是一个静态方法，不应该在class中定义而应该在Singleton构造方法中</span></span><br><span class="line">Singleton.getInstance = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//用一个自执行函数，并返回闭包，这样自执行函数中定义的instance变量即可以被闭包访问又对外隐藏，形成了私有的特点</span></span><br><span class="line">    <span class="keyword">let</span> instance;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试单例模式</span></span><br><span class="line"><span class="keyword">let</span> obj1 = Singleton.getInstance();</span><br><span class="line">obj1.login(); <span class="comment">// login...</span></span><br><span class="line"><span class="keyword">let</span> obj2 = Singleton.getInstance();</span><br><span class="line">obj2.login(); <span class="comment">// login...</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1 === obj2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>虽然上面的方法实现了单例模式，但只是靠文档去约束使用者不要通过new的常规方式创建实例，如果有人这么做了，还是会生成有别于单一实例的新的实例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj3 = <span class="keyword">new</span> Singleton();</span><br><span class="line">obj3.login(); <span class="comment">// login...</span></span><br><span class="line"><span class="comment">//生成了新的实例</span></span><br><span class="line"><span class="built_in">console</span>.log(ob1 === obj3); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>所以可以在构造函数中做判断，当用 new 的方式生成新的实例时，如果已经存在实例就返回，没有就创建实例再返回。但同样的，需要有另一个私有变量来保存这个唯一实例，所以还要用到立即执行函数和闭包：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Singleton = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//返回的闭包中用到的私有变量，用来存储唯一的实例</span></span><br><span class="line">    <span class="keyword">let</span> instance;</span><br><span class="line">    <span class="comment">// 返回的是一个类</span></span><br><span class="line">    <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">        <span class="keyword">constructor</span>() &#123;</span><br><span class="line">            <span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">                instance = <span class="keyword">this</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> instance;</span><br><span class="line">        &#125;</span><br><span class="line">        login() &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"login..."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj1 = <span class="keyword">new</span> Singleton();</span><br><span class="line">obj1.login(); <span class="comment">// login...</span></span><br><span class="line"><span class="keyword">let</span> obj2 = <span class="keyword">new</span> Singleton();</span><br><span class="line">obj2.login(); <span class="comment">// login...</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1 === obj2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/Wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/29/singleton/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 
-<a href="/2020/05/27/Binary-tree/" class="archive-article-date">
-  	<time datetime="2020-05-27T13:09:07.786Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-27</time>
-</a>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/27/Binary-tree/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Binary Tree</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/27/Binary-tree/">Binary Tree</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+        
+    </div>
+</aside>
 
-<a href="/2020/05/27/Queue-and-stack/" class="archive-article-date">
-  	<time datetime="2020-05-27T12:56:43.857Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-27</time>
-</a>
-        </div>
-    	 
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/27/Queue-and-stack/">Queue &amp; Stack</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/26/Hash-table/" class="archive-article-date">
-  	<time datetime="2020-05-26T12:38:06.833Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/26/Hash-table/">Hash Table</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/24/Linked-list/" class="archive-article-date">
-  	<time datetime="2020-05-24T07:33:27.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/24/Linked-list/">Linked List</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/23/Array-and-String/" class="archive-article-date">
-  	<time datetime="2020-05-23T00:56:21.766Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/23/Array-and-String/">Array and String</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 
-<a href="/2020/05/21/Array-101/" class="archive-article-date">
-  	<time datetime="2020-05-21T10:32:17.515Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/Array-101/">LeetCode Array 101课程的总结</a>
-    </h1>
-  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
 
-        <div class="article-info info-on-right">
-          
-          
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '1f0c5ae6a8b6188d1b68',
+  	clientSecret: '53e9e484b5fa6b2edbb6d6fa262f04e1c43a38dd',
+  	repo: 'WinterHoon.github.io',
+  	owner: 'WinterHoon',
+  	admin: ['WinterHoon'],
+  	id: 'Wed Jul 29 2020 16:25:55 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
 
-<a href="/2020/05/20/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-05-20T13:01:01.673Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/20/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">写博客前的准备工作</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/19/The-first-blog-for-testing/" class="archive-article-date">
-  	<time datetime="2020-05-19T11:51:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/The-first-blog-for-testing/">The first blog for testing</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/19/hello-world/" class="archive-article-date">
-  	<time datetime="2020-05-19T11:45:35.756Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
 
           </div>
         </div>
@@ -485,8 +388,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -148,6 +148,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-singleton" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/29/singleton/">JavaScript中的单例模式</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/2020/07/29/singleton/" class="archive-article-date">
+  	<time datetime="2020-07-29T08:25:55.230Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>单例模式就是指一个类只有一个实例。一般适用在只需要或者必须只有一个实例的情况。<br>为了实现这种情况，我们要隐藏掉类本身的构造函数，以免不小心用常规方式new出来一个新的实例。同时要对这个类的实例做判断，当需要用到实例时，要先判断这个类的实例存不存在，不存在才创建，存在了就直接返回。在java中，单例模式的实现简单明了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单例类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="comment">//用一个类属性来储存这个类的唯一实例，同时要对外隐藏，不能通过点方法直接获取</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> instance;</span><br><span class="line">    <span class="comment">//隐藏构造函数，在类外无法直接通过 new 的方式创建类的实例</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="comment">//简单的实例方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"login..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//类方法：获取唯一实例的唯一方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//对唯一实例的存在做判断</span></span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//单例模式测试类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Singleton obj1 = Singleton.getInstance();</span><br><span class="line">        obj1.login(); <span class="comment">// login...</span></span><br><span class="line">        Singleton obj2 = Singleton.getInstance();</span><br><span class="line">        obj2.login(); <span class="comment">// login...</span></span><br><span class="line">        System.out.println(obj1 == obj2); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//会报错，因为Singleton()构造函数对外是不可见的</span></span><br><span class="line">        Singleton obj3 = <span class="keyword">new</span> Singleton(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然上面的实现方式还有线程安全等问题没有解决，但思路上可以窥见通过private修饰符，Java可以很轻松的实现单例模式。</p>
+<p>而JavaScript没有private修饰符，我们是通过闭包的形式来实现了一个私有变量。具体代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单例类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span>() </span>&#123;</span><br><span class="line">    <span class="comment">//即使不写构造函数系统也会自动添加</span></span><br><span class="line">    <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//实例方法</span></span><br><span class="line">    login() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"login..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取唯一实例的方法是一个静态方法，不应该在class中定义而应该在Singleton构造方法中</span></span><br><span class="line">Singleton.getInstance = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//用一个自执行函数，并返回闭包，这样自执行函数中定义的instance变量即可以被闭包访问又对外隐藏，形成了私有的特点</span></span><br><span class="line">    <span class="keyword">let</span> instance;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试单例模式</span></span><br><span class="line"><span class="keyword">let</span> obj1 = Singleton.getInstance();</span><br><span class="line">obj1.login(); <span class="comment">// login...</span></span><br><span class="line"><span class="keyword">let</span> obj2 = Singleton.getInstance();</span><br><span class="line">obj2.login(); <span class="comment">// login...</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1 === obj2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>虽然上面的方法实现了单例模式，但只是靠文档去约束使用者不要通过new的常规方式创建实例，如果有人这么做了，还是会生成有别于单一实例的新的实例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj3 = <span class="keyword">new</span> Singleton();</span><br><span class="line">obj3.login(); <span class="comment">// login...</span></span><br><span class="line"><span class="comment">//生成了新的实例</span></span><br><span class="line"><span class="built_in">console</span>.log(ob1 === obj3); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>所以可以在构造函数中做判断，当用 new 的方式生成新的实例时，如果已经存在实例就返回，没有就创建实例再返回。但同样的，需要有另一个私有变量来保存这个唯一实例，所以还要用到立即执行函数和闭包：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Singleton = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//返回的闭包中用到的私有变量，用来存储唯一的实例</span></span><br><span class="line">    <span class="keyword">let</span> instance;</span><br><span class="line">    <span class="comment">// 返回的是一个类</span></span><br><span class="line">    <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">        <span class="keyword">constructor</span>() &#123;</span><br><span class="line">            <span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">                instance = <span class="keyword">this</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> instance;</span><br><span class="line">        &#125;</span><br><span class="line">        login() &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"login..."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj1 = <span class="keyword">new</span> Singleton();</span><br><span class="line">obj1.login(); <span class="comment">// login...</span></span><br><span class="line"><span class="keyword">let</span> obj2 = <span class="keyword">new</span> Singleton();</span><br><span class="line">obj2.login(); <span class="comment">// login...</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1 === obj2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/29/singleton/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '1f0c5ae6a8b6188d1b68',
+  	clientSecret: '53e9e484b5fa6b2edbb6d6fa262f04e1c43a38dd',
+  	repo: 'WinterHoon.github.io',
+  	owner: 'WinterHoon',
+  	admin: ['WinterHoon'],
+  	id: '',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+
+  
+
+  
     <article id="post-Binary-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
